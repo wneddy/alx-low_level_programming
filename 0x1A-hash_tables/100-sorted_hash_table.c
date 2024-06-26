@@ -16,12 +16,13 @@ shash_table_t *shash_table_create(unsigned long int size)
 
 	if (hash_t == NULL)
 		return (NULL);
-
 	hash_t->size = size;
 	hash_t->array = malloc(sizeof(shash_node_t *) * size);
 	if (hash_t->array == NULL)
+	{
 		free(hash_t);
 		return (NULL);
+	}
 	for (a = 0; a < size; a++)
 		hash_t->array[a] = NULL;
 	hash_t->shead = NULL;
@@ -111,7 +112,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
  * @key: key that u are looking for.
  * Return: value associated with element.
  */
-
 char *shash_table_get(const shash_table_t *ht, const char *key)
 {
 	unsigned long int idx;
@@ -134,7 +134,6 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
  * @ht: hash table to printed.
  * Return: the printed ht.
  */
-
 void shash_table_print(const shash_table_t *ht)
 {
 	shash_node_t *currentNode;
@@ -181,10 +180,8 @@ void shash_table_print_rev(const shash_table_t *ht)
 /**
  * shash_table_delete - function that deletes a hash table.
  * @ht: the hash table to be deleted
- *
  * Return: void().
  */
-
 void shash_table_delete(shash_table_t *ht)
 {
 	unsigned long int a;
